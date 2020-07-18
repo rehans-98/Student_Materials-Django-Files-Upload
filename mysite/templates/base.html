@@ -1,0 +1,120 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<link rel="stylesheet" type="text/css" href="{% static 'font/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'font/font-awesome-4.7.0/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
+<link rel="stylesheet" type="text/css" href="{% static 'app.css' %}"> 
+<link rel="stylesheet" type="text/css" href="{% static 'custom-responsive-style.css' %}"> 
+    
+
+<script src="{% static '/scripts/jquery-3.5.1.js' %}" type="text/javascript"></script> 
+<script src="{% static '/scripts/plugin-active.js' %} " type="text/javascript" ></script>
+
+  <title>{% block title %}STUDENT DATA HANDLER{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <a class="menu-toggle rounded" href="#">
+    <i class="fa fa-bars"></i>
+  </a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a class="smooth-scroll" href="#Header"></a>
+      </li>
+     
+      <li class="sidebar-nav-item">
+          <a class="smooth-scroll" href="#Services">Materials</a>
+      </li>
+      <li class="sidebar-nav-item">
+        <a class="smooth-scroll" href="#Contact">Contact</a>
+      </li>
+        <li class="sidebar-nav-item">
+        <a href="{% url 'login' %}">Admin Login</a>
+        </li>
+    </ul>
+  </nav>
+       
+    </header>
+ 
+    
+    
+    <section id="Banner">
+  <div class="logo">
+    <img src="{%static 'services-icon.png' %} ">
+  </div>
+  <div class="blacksection">
+      <h1>Students<br>meets<br>Technology!</h1>
+  </div>
+</section>
+    
+    <a href="{% url 'book_list1' %}" class="mscroll"><img src="{% static 'images/mouse-icon.png' %}"alt="mouse icon"></a>
+    
+<section id="Services">
+    {% block content %}
+        <h2>Materials: (click on 'show' button to view)</h2>
+    <p>
+      <a href="{% url 'book_list1' %}" class="btn btn-primary">Show</a>
+    </p>
+      
+
+    <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Cover</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in books %}
+        <tr>
+          <td>
+            {% if book.cover %}
+              <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width:100px;">
+            {% else %}
+              <span class="text-muted">No cover</span>
+            {% endif %}
+          </td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>
+            <a href="{{ book.pdf.url }}" class="btn btn-primary btn-sm" target="_blank">
+              Download PDF
+            </a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    <br>
+    <br>
+    <br>
+    
+    {% endblock %}
+
+</section>
+    <footer id="Contact">
+  <div class="container">
+    <p>feel free to get in touch. <br>
+        I am on Fiverr as well(A Freelancing Platform)
+      </p>
+    <ul class="social-icons">
+      <li><a href="https://www.linkedin.com/in/rehansayed98/"
+             target="_blank"  ><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+      <li><a href="https://www.fiverr.com/rehans98" target="_blank" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a></li>
+    </ul>
+  </div>
+</footer>
+ <div class="copyright"><p> &#169; Copyrights-2020 <br>Rehan S.(Technical Intern-Cloud Computing-- Cloud Counselage Pvt. Ltd. -Mumbai)
+     </p>
+</div>
+    
+    
+</body>
+</html>
