@@ -4,9 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from django.urls import reverse_lazy
 
 from .forms import BookForm
-from .forms import refForm
 from .models import Book
-from .models import ref
 
 class Home(TemplateView):
     template_name = 'base.html'
@@ -21,16 +19,6 @@ def upload(request):
         context['url'] = fs.url(name)
     return render(request, 'upload.html', context)
 
-def ref(request):
-    context = {}
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        fs = FileSystemStorage()
-        name = fs.save(uploaded_file.name, uploaded_file)
-        context['url'] = fs.url(name)
-    return render(request, 'upload_ref.html', context)
-
-
 def book_list(request):
     books = Book.objects.all()
     return render(request, 'book_list.html', {
@@ -43,11 +31,6 @@ def notes(request):
         'books': books
     })
 
-def ref(request):
-    ref = ref.objects.all()
-    return render(request, 'book_list1.html', {
-        'ref': ref
-    })
 
 
 def upload_book(request):
@@ -62,17 +45,6 @@ def upload_book(request):
         'form': form
     })
 
-def upload_ref(request):
-    if request.method == 'POST':
-        form = refForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('book_list1')
-    else:
-        form = refForm()
-    return render(request, 'upload_ref.html', {
-        'form': form
-    })
 
 
 def delete_book(request, pk):
