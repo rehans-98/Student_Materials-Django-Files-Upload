@@ -1,6 +1,6 @@
 # Django File Upload
 
-This Project('STUDENT DATA HANDLER') is an example of Django File Upload.
+This Project('STUDY MATERIAL PORTAL) is an example of Django File Upload.
 This Project is Completed on behalf of "Cloud Counselage Pvt Ltd-Mumbai" for completion of Internship.
 Developed by- Rehan S.(Technical Intern-Cloud Computing--Cloud Counselage Pvt. Ltd.- Mumbai)
 
